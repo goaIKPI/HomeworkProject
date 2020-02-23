@@ -9,108 +9,41 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    
-    @IBOutlet weak var imageProfile: UIImageView!
-    @IBOutlet weak var editButton: UIButton!
-    @IBOutlet weak var replacePhotoButton: UIButton!
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        // print(editButton.frame)
-        // Проблема в том, что мы пытаемся вывести frame до полной инициализации editButton(самого объекта) 
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(editButton.frame)
-        setCornersPhotoView()
-        setEditButton()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("Application moved from Disappeared | Disappearing to Appearing: viewWillAppear")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print(editButton.frame)
-        /* Разные значения, потому что в viewDidAppear используются размеры размера на запускаемом устройстве,
-         а в viewDidLoad используется размер экрана, указанного в .stoyboard */
+        print("Application moved from Appearing to Appeared: viewDidAppear")
     }
- 
     
-    @IBAction func openActionSheet(_ sender: UIButton) {
-        print("Выбери изображение профиля")
-        showActionSheet()
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        print("Application moved from Autolayouted to Autolayouting: viewWillLayoutSubviews")
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print("Application moved from Autolayouting to Autolayouted: viewDidLayoutSubviews")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("Application moved from Appearing | Appeared to Disappearing: viewWillDisappear")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("Application moved from Disappearing to Disappeared: viewWillAppear")
     }
     
 }
 
-
-// MARK: -Image Picker
-extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        imageProfile.image = info[UIImagePickerController.InfoKey.originalImage]! as? UIImage
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-}
-
-
-// MARK: -Action Sheet Photo
-private extension ViewController {
-    func camera() {
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self
-        myPickerController.sourceType = UIImagePickerController.SourceType.camera
-
-        self.present(myPickerController, animated: true, completion: nil)
-
-    }
-
-    func photoLibrary() {
-
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self
-        myPickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
-
-        self.present(myPickerController, animated: true, completion: nil)
-
-    }
-
-    func showActionSheet() {
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
-        
-        
-        actionSheet.addAction(UIAlertAction(title: "Установить из галлереи", style: UIAlertAction.Style.default, handler: { (alert:UIAlertAction!) -> Void in
-            self.photoLibrary()
-        }))
-        
-        
-        actionSheet.addAction(UIAlertAction(title: "Сделать фото", style: UIAlertAction.Style.default, handler: { (alert:UIAlertAction!) -> Void in
-            self.camera()
-        }))
-
-
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
-
-        self.present(actionSheet, animated: true, completion: nil)
-
-    }
-}
-
-
-// MARK: -UI Improvements
-private extension ViewController {
-    func setCornersPhotoView() {
-        let corners = replacePhotoButton.frame.height/2
-        replacePhotoButton.layer.cornerRadius = corners
-        imageProfile.layer.cornerRadius = corners
-    }
-       
-    func setEditButton() {
-        editButton.layer.cornerRadius = 10
-        editButton.layer.borderColor = UIColor.black.cgColor
-        editButton.layer.borderWidth = 2
-        editButton.clipsToBounds = true
-    }
-}
