@@ -1,5 +1,5 @@
 //
-//  ConfigurationView.swift
+//  ConfigurableView.swift
 //  HomeworkTinkoffMessages
 //
 //  Created by Олег Герман  on 01/03/2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ConfigurationView {
+protocol ConfigurableView {
     
     associatedtype ConfigurationModel
     

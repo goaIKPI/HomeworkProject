@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Профиль-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="HomeworkTinkoffMessages" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ProfileViewController" customModule="HomeworkTinkoffMessages" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -82,9 +82,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="KTD-H0-Bku"/>
+                    <navigationItem key="navigationItem" title="Профиль" id="KTD-H0-Bku">
+                        <barButtonItem key="leftBarButtonItem" title="закрыть" id="BMd-s5-n54">
+                            <connections>
+                                <action selector="closeProfileWindow:" destination="BYZ-38-t0r" id="n7c-SC-Wh9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="editButton" destination="hVn-fo-Fzc" id="5nN-hW-F15"/>
+                        <outlet property="editButton" destination="hVn-fo-Fzc" id="L34-4e-6RS"/>
                         <outlet property="imageProfile" destination="hr2-q0-sMT" id="Pwu-Fg-3rz"/>
                         <outlet property="replacePhotoButton" destination="gPc-Kl-cSn" id="fQB-gL-Ump"/>
                     </connections>
@@ -96,7 +102,7 @@
         <!--Conversations List View Controller-->
         <scene sceneID="68T-ZZ-7oy">
             <objects>
-                <viewController id="n2t-fV-GKc" customClass="ConversationsListViewController" customModule="TinkoffChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="n2t-fV-GKc" customClass="ConversationsListViewController" customModule="HomeworkTinkoffMessages" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Oub-YE-RAA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -140,7 +146,7 @@
         <!--Conversation View Controller-->
         <scene sceneID="OCB-AE-xzs">
             <objects>
-                <viewController id="tnn-eC-OhA" customClass="ConversationViewController" customModule="TinkoffChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="tnn-eC-OhA" customClass="ConversationViewController" customModule="HomeworkTinkoffMessages" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5ht-mp-esX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

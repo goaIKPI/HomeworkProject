@@ -34,8 +34,7 @@ extension ConversationViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let identifier = String(describing: MessageCell.self)
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? MessageCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MessageCell.self)) as? MessageCell else { return UITableViewCell() }
         cell.configure(with: messages[indexPath.row])
         return cell
     }  

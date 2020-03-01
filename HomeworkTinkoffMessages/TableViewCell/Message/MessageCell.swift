@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessageCell: UITableViewCell, ConfigurationView {
+class MessageCell: UITableViewCell, ConfigurableView {
     
     @IBOutlet var rightConstraint: NSLayoutConstraint!
     @IBOutlet var leftConstaint: NSLayoutConstraint!

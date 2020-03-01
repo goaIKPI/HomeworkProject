@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationCell: UITableViewCell, ConfigurationView {
+class ConversationCell: UITableViewCell, ConfigurableView {
 
     @IBOutlet weak var personNameLabel: UILabel!
     @IBOutlet weak var lastMessageLabel: UILabel!
@@ -18,7 +18,7 @@ class ConversationCell: UITableViewCell, ConfigurationView {
         personNameLabel.text = model.name
         if model.message == nil {
             lastMessageLabel.text = "No messages yet"
-            lastMessageLabel.font = UIFont(name: "Avenir-Light", size: 17.0)
+            lastMessageLabel.font = UIFont(name: "Cochin", size: 17.0)
         } else {
             lastMessageLabel.text = model.message
             lastMessageLabel.font = UIFont.systemFont(ofSize: 17)
@@ -33,5 +33,7 @@ class ConversationCell: UITableViewCell, ConfigurationView {
             lastMessageLabel.font = UIFont.systemFont(ofSize: 17, weight: .heavy)
         }
     }
+    
+
     
 }

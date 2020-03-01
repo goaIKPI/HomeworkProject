@@ -14,6 +14,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var replacePhotoButton: UIButton!
     
+    public var imagePickerController: UIImagePickerController?
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         // print(editButton.frame)
@@ -41,6 +43,10 @@ class ProfileViewController: UIViewController {
         showActionSheet()
     }
     
+    @IBAction func closeProfileWindow(_ sender: Any) {
+        navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 
@@ -57,16 +63,28 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 
 // MARK: -Action Sheet Photo
 private extension ProfileViewController {
-    func camera() {
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self
-        myPickerController.sourceType = UIImagePickerController.SourceType.camera
+    func openCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            guard let controller = self.imagePickerController else {return}
+            controller.delegate = self
+            controller.sourceType = UIImagePickerController.SourceType.camera
 
-        self.present(myPickerController, animated: true, completion: nil)
+            self.present(controller, animated: true, completion: nil)
+        } else {
+            showCameraIsNotAvailableAlert()
+        }
+        
 
     }
+    
+    func showCameraIsNotAvailableAlert() {
+        let noCameraAlertController = UIAlertController(title: "No camera", message: "The camera is not available on this device", preferredStyle: .alert)
+        let okCameraButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+        noCameraAlertController.addAction(okCameraButton)
+        present(noCameraAlertController, animated: true)
+    }
 
-    func photoLibrary() {
+    func openPhotoLibrary() {
 
         let myPickerController = UIImagePickerController()
         myPickerController.delegate = self
@@ -81,12 +99,12 @@ private extension ProfileViewController {
         
         
         actionSheet.addAction(UIAlertAction(title: "Установить из галлереи", style: UIAlertAction.Style.default, handler: { (alert:UIAlertAction!) -> Void in
-            self.photoLibrary()
+            self.openPhotoLibrary()
         }))
         
         
         actionSheet.addAction(UIAlertAction(title: "Сделать фото", style: UIAlertAction.Style.default, handler: { (alert:UIAlertAction!) -> Void in
-            self.camera()
+            self.openCamera()
         }))
 
 

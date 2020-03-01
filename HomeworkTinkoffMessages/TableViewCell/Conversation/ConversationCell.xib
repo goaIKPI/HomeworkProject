@@ -19,7 +19,7 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oleg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCp-mb-rjd">
                         <rect key="frame" x="20" y="10" width="436.5" height="29"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -34,7 +34,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="2zf-0U-Wwy"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -57,7 +57,7 @@
                 <outlet property="lastMessageTimeLabel" destination="xdo-pz-KGx" id="uIc-i3-zVO"/>
                 <outlet property="personNameLabel" destination="jCp-mb-rjd" id="MEj-5C-pM5"/>
             </connections>
-            <point key="canvasLocation" x="280.43478260869568" y="115.17857142857142"/>
+            <point key="canvasLocation" x="280.3125" y="115.14084507042254"/>
         </tableViewCell>
     </objects>
 </document>

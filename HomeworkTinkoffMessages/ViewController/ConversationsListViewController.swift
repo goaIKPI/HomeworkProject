@@ -12,106 +12,51 @@ class ConversationsListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    let onlineUserConversations = [ConversationCellModel(name: "Dmitry",
-                                                         message: "It looks good,but it does not work well",
-                                                         date: Date(),
-                                                         isOnline: true,
-                                                         hasUnreadMessages: false),
-                                   ConversationCellModel(name: "Tatyana Svyatysheva",
-                                                         message: " i'll be out in 20 minutes",
+    let onlineUserConversations = [ConversationCellModel(name: "Oleg",
+                                                         message: "Hello",
                                                          date: Date(),
                                                          isOnline: true,
                                                          hasUnreadMessages: true),
-                                   ConversationCellModel(name: "Eurotrip",
+                                   ConversationCellModel(name: "Vasya",
                                                          message: nil,
                                                          date: Date(),
                                                          isOnline: true,
                                                          hasUnreadMessages: false),
-                                   ConversationCellModel(name: "M N",
-                                                         message: "how long will you be there",
-                                                         date: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date(),
+                                   ConversationCellModel(name: "Masya",
+                                                         message: "push to git",
+                                                         date: Date(),
+                                                         isOnline: false,
+                                                         hasUnreadMessages: false),
+                                   ConversationCellModel(name: "Georgy",
+                                                         message: "Study!",
+                                                         date: Date(),
                                                          isOnline: true,
                                                          hasUnreadMessages: false),
-                                   ConversationCellModel(name: "Sergey Ostanin",
-                                                         message: "ok",
+                                   ConversationCellModel(name: "Evgeni",
+                                                         message: "get your message",
                                                          date: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date(),
                                                          isOnline: true,
-                                                         hasUnreadMessages: true),
-                                   ConversationCellModel(name: "Maryna Maryna Maryna Maryna",
-                                                         message: nil,
-                                                         date: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date(),
-                                                         isOnline: true,
-                                                         hasUnreadMessages: false),
-                                   ConversationCellModel(name: "Igor",
-                                                         message: "github/tyomae",
-                                                         date: Calendar.current.date(byAdding: .day, value: -2, to: Date()) ?? Date(),
-                                                         isOnline: true,
-                                                         hasUnreadMessages: true),
-                                   ConversationCellModel(name: "TFS20s iOS Conversation",
-                                                         message: "Привет, еще раз поздравляем вас с поступлением в финтех школу",
-                                                         date: Calendar.current.date(byAdding: .day, value: -2, to: Date()) ?? Date(),
-                                                         isOnline: true,
-                                                         hasUnreadMessages: false),
-                                   ConversationCellModel(name: "HELLOO",
-                                                         message: "Hi",
-                                                         date: Calendar.current.date(byAdding: .day, value: -3, to: Date()) ?? Date(),
-                                                         isOnline: true,
-                                                         hasUnreadMessages: true),
-                                   ConversationCellModel(name: "Saved Messages",
-                                                         message: nil,
-                                                         date: Calendar.current.date(byAdding: .day, value: -3, to: Date()) ?? Date(),
-                                                         isOnline: true,
-                                                         hasUnreadMessages: false)]
-    let historyConversations = [ConversationCellModel(name: "Mickey",
-                                                      message: "It looks good,but it does not work well",
+                                                         hasUnreadMessages: true)]
+    let historyConversations = [ConversationCellModel(name: "Jack",
+                                                      message: "Oklahoma remember you",
                                                       date: Date(),
-                                                      isOnline: false,
+                                                      isOnline: true,
                                                       hasUnreadMessages: false),
-                                ConversationCellModel(name: "Anna Revutskaya",
-                                                      message: " i'll be out in 50 minutes",
+                                ConversationCellModel(name: "Daniels",
+                                                      message: "Me too",
                                                       date: Date(),
                                                       isOnline: false,
                                                       hasUnreadMessages: true),
-                                ConversationCellModel(name: "Birthday",
-                                                      message: "what do u want to present?",
+                                ConversationCellModel(name: "Андрей",
+                                                      message: "Русские символы работают?",
                                                       date: Date(),
-                                                      isOnline: false,
+                                                      isOnline: true,
                                                       hasUnreadMessages: false),
-                                ConversationCellModel(name: "A V",
-                                                      message: "how long will you be there",
+                                ConversationCellModel(name: "Начальник",
+                                                      message: "когда будет готов проект?",
                                                       date: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date(),
                                                       isOnline: false,
-                                                      hasUnreadMessages: true),
-                                ConversationCellModel(name: "Sergey Ostanin",
-                                                      message: "ok",
-                                                      date: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date(),
-                                                      isOnline: false,
-                                                      hasUnreadMessages: false),
-                                ConversationCellModel(name: "Maryna Maryna Maryna Maryna",
-                                                      message: "Вторая секция с хидером секции с текстом History (в ней будут храниться непустые диалоги с адресатами, недоступными для переписки)",
-                                                      date: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date(),
-                                                      isOnline: false,
-                                                      hasUnreadMessages: false),
-                                ConversationCellModel(name: "STEPAN",
-                                                      message: "github/tyomae",
-                                                      date: Calendar.current.date(byAdding: .day, value: -2, to: Date()) ?? Date(),
-                                                      isOnline: false,
-                                                      hasUnreadMessages: true),
-                                ConversationCellModel(name: "TFS20s iOS Conversation",
-                                                      message: "Привет, еще раз поздравляем вас с поступлением в финтех школу",
-                                                      date: Calendar.current.date(byAdding: .day, value: -2, to: Date()) ?? Date(),
-                                                      isOnline: false,
-                                                      hasUnreadMessages: false),
-                                ConversationCellModel(name: "Hello",
-                                                      message: "Hi",
-                                                      date: Calendar.current.date(byAdding: .day, value: -3, to: Date()) ?? Date(),
-                                                      isOnline: false,
-                                                      hasUnreadMessages: true),
-                                ConversationCellModel(name: "Saved Messages",
-                                                      message: "Если пользователь online - то делаем фон ячейки бледно-желтым цветом. Оффлайн - оставляем белым.",
-                                                      date: Calendar.current.date(byAdding: .day, value: -3, to: Date()) ?? Date(),
-                                                      isOnline: false,
-                                                      hasUnreadMessages: false)]
+                                                      hasUnreadMessages: true)]
     
     
     override func viewDidLoad() {
@@ -122,9 +67,9 @@ class ConversationsListViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
+
         
-        self.navigationItem.backBarButtonItem?.tintColor = .black
-        title = "HomeworkTinkoffMessages"
+        title = "Tinkoff Chat"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -169,8 +114,7 @@ extension ConversationsListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let identifier = String(describing: ConversationCell.self)
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? ConversationCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ConversationCell.self)) as? ConversationCell else { return UITableViewCell() }
         if indexPath.section == 0 {
             cell.configure(with: onlineUserConversations[indexPath.row])
         } else {
