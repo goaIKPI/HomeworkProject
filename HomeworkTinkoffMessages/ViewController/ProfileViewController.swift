@@ -1,14 +1,13 @@
 //
-//  ViewController.swift
+//  ProfileViewController.swift
 //  HomeworkTinkoffMessages
 //
-//  Created by Олег Герман on 13.02.2020.
-//  Copyright © 2020 Олег Герман. All rights reserved.
+//  Created by Олег Герман  on 01/03/2020.
+//  Copyright © 2020 Oleg German. All rights reserved.
 //
-
 import UIKit
 
-class ViewController: UIViewController {
+class ProfileViewController: UIViewController {
     
     
     @IBOutlet weak var imageProfile: UIImageView!
@@ -18,7 +17,7 @@ class ViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         // print(editButton.frame)
-        // Проблема в том, что мы пытаемся вывести frame до полной инициализации editButton(самого объекта) 
+        // Проблема в том, что мы пытаемся вывести frame до полной инициализации editButton(самого объекта)
     }
     
     override func viewDidLoad() {
@@ -46,7 +45,7 @@ class ViewController: UIViewController {
 
 
 // MARK: -Image Picker
-extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         imageProfile.image = info[UIImagePickerController.InfoKey.originalImage]! as? UIImage
@@ -57,7 +56,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
 
 
 // MARK: -Action Sheet Photo
-private extension ViewController {
+private extension ProfileViewController {
     func camera() {
         let myPickerController = UIImagePickerController()
         myPickerController.delegate = self
@@ -100,7 +99,7 @@ private extension ViewController {
 
 
 // MARK: -UI Improvements
-private extension ViewController {
+private extension ProfileViewController {
     func setCornersPhotoView() {
         let corners = replacePhotoButton.frame.height/2
         replacePhotoButton.layer.cornerRadius = corners

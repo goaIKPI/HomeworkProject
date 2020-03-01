@@ -7,17 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		910A8216240BF95500106559 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A8208240BF95300106559 /* ProfileViewController.swift */; };
+		910A8217240BF95500106559 /* ConfigurationCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A8209240BF95400106559 /* ConfigurationCellModel.swift */; };
+		910A8218240BF95500106559 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A820A240BF95400106559 /* ConversationViewController.swift */; };
+		910A8219240BF95500106559 /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A820B240BF95400106559 /* ConfigurableView.swift */; };
+		910A821B240BF95500106559 /* MessageCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A820D240BF95400106559 /* MessageCellModel.swift */; };
+		910A821C240BF95500106559 /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910A820E240BF95400106559 /* ConversationCell.xib */; };
+		910A821D240BF95500106559 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A820F240BF95400106559 /* MessageCell.swift */; };
+		910A8221240BF95500106559 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A8213240BF95400106559 /* ConversationCell.swift */; };
+		910A8222240BF95500106559 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A8214240BF95400106559 /* ConversationsListViewController.swift */; };
+		910A8223240BF95500106559 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910A8215240BF95400106559 /* MessageCell.xib */; };
 		9185F3F423F5A5DF00A1F845 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9185F3F323F5A5DF00A1F845 /* AppDelegate.swift */; };
-		9185F3F823F5A5DF00A1F845 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9185F3F723F5A5DF00A1F845 /* ViewController.swift */; };
 		9185F3FB23F5A5DF00A1F845 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9185F3F923F5A5DF00A1F845 /* Main.storyboard */; };
 		9185F3FD23F5A5E400A1F845 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9185F3FC23F5A5E400A1F845 /* Assets.xcassets */; };
 		9185F40023F5A5E400A1F845 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9185F3FE23F5A5E400A1F845 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		910A8208240BF95300106559 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		910A8209240BF95400106559 /* ConfigurationCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationCellModel.swift; sourceTree = "<group>"; };
+		910A820A240BF95400106559 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		910A820B240BF95400106559 /* ConfigurableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurableView.swift; sourceTree = "<group>"; };
+		910A820D240BF95400106559 /* MessageCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCellModel.swift; sourceTree = "<group>"; };
+		910A820E240BF95400106559 /* ConversationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
+		910A820F240BF95400106559 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		910A8213240BF95400106559 /* ConversationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
+		910A8214240BF95400106559 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
+		910A8215240BF95400106559 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		9185F3F023F5A5DF00A1F845 /* HomeworkTinkoffMessages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeworkTinkoffMessages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9185F3F323F5A5DF00A1F845 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9185F3F723F5A5DF00A1F845 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9185F3FA23F5A5DF00A1F845 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9185F3FC23F5A5E400A1F845 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9185F3FF23F5A5E400A1F845 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -35,6 +53,60 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		910A8225240BF97A00106559 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				910A8208240BF95300106559 /* ProfileViewController.swift */,
+				910A820A240BF95400106559 /* ConversationViewController.swift */,
+				910A8214240BF95400106559 /* ConversationsListViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		910A8226240BF98700106559 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				910A822A240BFAB900106559 /* Message */,
+				910A8229240BFAA500106559 /* Conversation */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		910A8227240BF98E00106559 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				910A8209240BF95400106559 /* ConfigurationCellModel.swift */,
+				910A820D240BF95400106559 /* MessageCellModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		910A8228240BF99300106559 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				910A820B240BF95400106559 /* ConfigurableView.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		910A8229240BFAA500106559 /* Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				910A8213240BF95400106559 /* ConversationCell.swift */,
+				910A820E240BF95400106559 /* ConversationCell.xib */,
+			);
+			path = Conversation;
+			sourceTree = "<group>";
+		};
+		910A822A240BFAB900106559 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				910A820F240BF95400106559 /* MessageCell.swift */,
+				910A8215240BF95400106559 /* MessageCell.xib */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
 		9185F3E723F5A5DF00A1F845 = {
 			isa = PBXGroup;
 			children = (
@@ -54,8 +126,11 @@
 		9185F3F223F5A5DF00A1F845 /* HomeworkTinkoffMessages */ = {
 			isa = PBXGroup;
 			children = (
+				910A8228240BF99300106559 /* Protocol */,
+				910A8227240BF98E00106559 /* Models */,
+				910A8226240BF98700106559 /* TableViewCell */,
+				910A8225240BF97A00106559 /* ViewController */,
 				9185F3F323F5A5DF00A1F845 /* AppDelegate.swift */,
-				9185F3F723F5A5DF00A1F845 /* ViewController.swift */,
 				9185F3F923F5A5DF00A1F845 /* Main.storyboard */,
 				9185F3FC23F5A5E400A1F845 /* Assets.xcassets */,
 				9185F3FE23F5A5E400A1F845 /* LaunchScreen.storyboard */,
@@ -123,8 +198,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9185F40023F5A5E400A1F845 /* LaunchScreen.storyboard in Resources */,
+				910A8223240BF95500106559 /* MessageCell.xib in Resources */,
 				9185F3FD23F5A5E400A1F845 /* Assets.xcassets in Resources */,
 				9185F3FB23F5A5DF00A1F845 /* Main.storyboard in Resources */,
+				910A821C240BF95500106559 /* ConversationCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,8 +212,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9185F3F823F5A5DF00A1F845 /* ViewController.swift in Sources */,
+				910A8217240BF95500106559 /* ConfigurationCellModel.swift in Sources */,
+				910A8222240BF95500106559 /* ConversationsListViewController.swift in Sources */,
+				910A821D240BF95500106559 /* MessageCell.swift in Sources */,
+				910A8216240BF95500106559 /* ProfileViewController.swift in Sources */,
+				910A8218240BF95500106559 /* ConversationViewController.swift in Sources */,
+				910A8219240BF95500106559 /* ConfigurableView.swift in Sources */,
 				9185F3F423F5A5DF00A1F845 /* AppDelegate.swift in Sources */,
+				910A821B240BF95500106559 /* MessageCellModel.swift in Sources */,
+				910A8221240BF95500106559 /* ConversationCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
