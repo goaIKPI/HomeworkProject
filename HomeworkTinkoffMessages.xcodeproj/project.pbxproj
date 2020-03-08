@@ -34,6 +34,7 @@
 		910A8213240BF95400106559 /* ConversationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		910A8214240BF95400106559 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		910A8215240BF95400106559 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		916F1A892414E9DC000C3D54 /* homework4.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = homework4.playground; path = ../../homework4.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9185F3F023F5A5DF00A1F845 /* HomeworkTinkoffMessages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeworkTinkoffMessages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9185F3F323F5A5DF00A1F845 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9185F3FA23F5A5DF00A1F845 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -126,6 +127,7 @@
 		9185F3F223F5A5DF00A1F845 /* HomeworkTinkoffMessages */ = {
 			isa = PBXGroup;
 			children = (
+				916F1A892414E9DC000C3D54 /* homework4.playground */,
 				910A8228240BF99300106559 /* Protocol */,
 				910A8227240BF98E00106559 /* Models */,
 				910A8226240BF98700106559 /* TableViewCell */,
