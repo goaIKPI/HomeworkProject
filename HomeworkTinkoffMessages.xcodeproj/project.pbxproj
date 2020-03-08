@@ -40,7 +40,6 @@
 		9185F3FC23F5A5E400A1F845 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9185F3FF23F5A5E400A1F845 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9185F40123F5A5E400A1F845 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		91D2E0662415885800C850E9 /* hw4.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = hw4.playground; path = "../../../Library/Autosave Information/hw4.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +110,6 @@
 		9185F3E723F5A5DF00A1F845 = {
 			isa = PBXGroup;
 			children = (
-				91D2E0662415885800C850E9 /* hw4.playground */,
 				9185F3F223F5A5DF00A1F845 /* HomeworkTinkoffMessages */,
 				9185F3F123F5A5DF00A1F845 /* Products */,
 			);
