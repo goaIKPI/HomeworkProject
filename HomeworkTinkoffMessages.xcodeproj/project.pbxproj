@@ -17,6 +17,12 @@
 		910A8221240BF95500106559 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A8213240BF95400106559 /* ConversationCell.swift */; };
 		910A8222240BF95500106559 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A8214240BF95400106559 /* ConversationsListViewController.swift */; };
 		910A8223240BF95500106559 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910A8215240BF95400106559 /* MessageCell.xib */; };
+		911015CE241E3F60002CB9AB /* ExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911015CD241E3F60002CB9AB /* ExtensionViewController.swift */; };
+		911015D1241E74C8002CB9AB /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911015D0241E74C8002CB9AB /* GCDDataManager.swift */; };
+		911015D3241E74DE002CB9AB /* OperationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911015D2241E74DE002CB9AB /* OperationDataManager.swift */; };
+		911015D7241E7CE6002CB9AB /* IProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911015D6241E7CE6002CB9AB /* IProfile.swift */; };
+		911015D9241E868E002CB9AB /* IProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911015D8241E868E002CB9AB /* IProfileInteractor.swift */; };
+		911015DB241E88DD002CB9AB /* ProfileDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911015DA241E88DD002CB9AB /* ProfileDataManager.swift */; };
 		9185F3F423F5A5DF00A1F845 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9185F3F323F5A5DF00A1F845 /* AppDelegate.swift */; };
 		9185F3FB23F5A5DF00A1F845 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9185F3F923F5A5DF00A1F845 /* Main.storyboard */; };
 		9185F3FD23F5A5E400A1F845 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9185F3FC23F5A5E400A1F845 /* Assets.xcassets */; };
@@ -34,6 +40,12 @@
 		910A8213240BF95400106559 /* ConversationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		910A8214240BF95400106559 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		910A8215240BF95400106559 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		911015CD241E3F60002CB9AB /* ExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewController.swift; sourceTree = "<group>"; };
+		911015D0241E74C8002CB9AB /* GCDDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDDataManager.swift; sourceTree = "<group>"; };
+		911015D2241E74DE002CB9AB /* OperationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDataManager.swift; sourceTree = "<group>"; };
+		911015D6241E7CE6002CB9AB /* IProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProfile.swift; sourceTree = "<group>"; };
+		911015D8241E868E002CB9AB /* IProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProfileInteractor.swift; sourceTree = "<group>"; };
+		911015DA241E88DD002CB9AB /* ProfileDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataManager.swift; sourceTree = "<group>"; };
 		9185F3F023F5A5DF00A1F845 /* HomeworkTinkoffMessages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeworkTinkoffMessages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9185F3F323F5A5DF00A1F845 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9185F3FA23F5A5DF00A1F845 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -56,6 +68,7 @@
 		910A8225240BF97A00106559 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				911015CF241E7485002CB9AB /* DataManager */,
 				910A8208240BF95300106559 /* ProfileViewController.swift */,
 				910A820A240BF95400106559 /* ConversationViewController.swift */,
 				910A8214240BF95400106559 /* ConversationsListViewController.swift */,
@@ -77,6 +90,7 @@
 			children = (
 				910A8209240BF95400106559 /* ConfigurationCellModel.swift */,
 				910A820D240BF95400106559 /* MessageCellModel.swift */,
+				911015D6241E7CE6002CB9AB /* IProfile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -107,6 +121,16 @@
 			path = Message;
 			sourceTree = "<group>";
 		};
+		911015CF241E7485002CB9AB /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				911015D0241E74C8002CB9AB /* GCDDataManager.swift */,
+				911015DA241E88DD002CB9AB /* ProfileDataManager.swift */,
+				911015D2241E74DE002CB9AB /* OperationDataManager.swift */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
 		9185F3E723F5A5DF00A1F845 = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +159,8 @@
 				9185F3FC23F5A5E400A1F845 /* Assets.xcassets */,
 				9185F3FE23F5A5E400A1F845 /* LaunchScreen.storyboard */,
 				9185F40123F5A5E400A1F845 /* Info.plist */,
+				911015CD241E3F60002CB9AB /* ExtensionViewController.swift */,
+				911015D8241E868E002CB9AB /* IProfileInteractor.swift */,
 			);
 			path = HomeworkTinkoffMessages;
 			sourceTree = "<group>";
@@ -213,14 +239,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				910A8217240BF95500106559 /* ConfigurationCellModel.swift in Sources */,
+				911015D3241E74DE002CB9AB /* OperationDataManager.swift in Sources */,
+				911015D9241E868E002CB9AB /* IProfileInteractor.swift in Sources */,
 				910A8222240BF95500106559 /* ConversationsListViewController.swift in Sources */,
 				910A821D240BF95500106559 /* MessageCell.swift in Sources */,
 				910A8216240BF95500106559 /* ProfileViewController.swift in Sources */,
+				911015CE241E3F60002CB9AB /* ExtensionViewController.swift in Sources */,
 				910A8218240BF95500106559 /* ConversationViewController.swift in Sources */,
+				911015D1241E74C8002CB9AB /* GCDDataManager.swift in Sources */,
+				911015DB241E88DD002CB9AB /* ProfileDataManager.swift in Sources */,
 				910A8219240BF95500106559 /* ConfigurableView.swift in Sources */,
 				9185F3F423F5A5DF00A1F845 /* AppDelegate.swift in Sources */,
 				910A821B240BF95500106559 /* MessageCellModel.swift in Sources */,
 				910A8221240BF95500106559 /* ConversationCell.swift in Sources */,
+				911015D7241E7CE6002CB9AB /* IProfile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
