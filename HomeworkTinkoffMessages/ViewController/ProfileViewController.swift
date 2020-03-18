@@ -226,7 +226,9 @@ class ProfileViewController: UIViewController {
             } else {
                 let alert = UIAlertController(title: "Ошибка",
                                               message: "Не удалось сохранить данные", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "Ок", style: .default, handler: nil)
+                let okAction = UIAlertAction(title: "Ок", style: .default) { _ in
+                    self.container.isHidden = true
+                }
                 let repeatAction = UIAlertAction(title: "Повторить", style: .default) { _ in
                     self.saveProfile()
                 }
