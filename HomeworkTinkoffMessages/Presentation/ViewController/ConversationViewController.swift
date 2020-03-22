@@ -13,6 +13,8 @@ class ConversationViewController: UIViewController {
     
     private var messagesInteractor = MessagesInteractor(messageDataManager: MessagesDataManager())
     
+    @IBOutlet weak var constraintViewToBottom: NSLayoutConstraint!
+    
     @IBOutlet weak var newMessageField: UITextField!
 
     var channel: ConversationCellModel?
@@ -38,6 +40,7 @@ class ConversationViewController: UIViewController {
     @IBAction func sendMessage(_ sender: UIButton) {
         if newMessageField.text == "" {
             showAlert(title: "Введите сообщение", message: "")
+            newMessageField.endEditing(true)
             return
         }
         let message = MessageCellModel(text: newMessageField.text!,
@@ -57,15 +60,15 @@ class ConversationViewController: UIViewController {
 
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
+            if self.constraintViewToBottom.constant == 0 {
+                self.constraintViewToBottom.constant -= keyboardSize.height
             }
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y = 0
+        if self.constraintViewToBottom.constant != 0 {
+            self.constraintViewToBottom.constant = 0
         }
     }
     

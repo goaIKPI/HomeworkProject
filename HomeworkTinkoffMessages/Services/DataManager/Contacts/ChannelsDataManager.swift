@@ -30,9 +30,16 @@ class ChannelsDataManager: ChannelsDataManagerProtocol {
 
     
     func createChannel(channel: ConversationCellModel, completion: @escaping CompletionErrorCreateChannel) {
-        referenceChannel.addDocument(data: channel.toDict, completion: { error in
+        let document = referenceChannel.addDocument(data: channel.toDict, completion: { error in
             completion(error)
         })
+        
+        //Небольшой костыль за 3 минуты до сдачи
+        document.collection("messages").addDocument(data: MessageCellModel(text: channel.message ?? "",
+                                                                           isIncoming: true,
+                                                                           date: Date(),
+                                                                           user: User(id: String(Constant.User.id),
+                                                                            name: Constant.User.name)).toDict)
     
     }
     

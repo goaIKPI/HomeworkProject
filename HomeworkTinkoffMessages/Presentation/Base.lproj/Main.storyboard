@@ -275,15 +275,15 @@
                             <constraint firstItem="o7x-zD-1zj" firstAttribute="leading" secondItem="5ht-mp-esX" secondAttribute="leading" id="22i-am-uQ6"/>
                             <constraint firstItem="o7x-zD-1zj" firstAttribute="trailing" secondItem="ElM-ut-tdV" secondAttribute="trailing" id="8Qt-Vu-MQs"/>
                             <constraint firstItem="ElM-ut-tdV" firstAttribute="trailing" secondItem="cy5-ed-1od" secondAttribute="trailing" id="IzF-BD-nR5"/>
-                            <constraint firstItem="o7x-zD-1zj" firstAttribute="top" secondItem="cy5-ed-1od" secondAttribute="bottom" id="UOj-Fg-Q0m"/>
                             <constraint firstItem="cy5-ed-1od" firstAttribute="top" secondItem="ElM-ut-tdV" secondAttribute="top" id="WEk-8A-CXA"/>
-                            <constraint firstItem="ElM-ut-tdV" firstAttribute="bottom" secondItem="cy5-ed-1od" secondAttribute="bottom" constant="50" id="WIW-xw-PWY"/>
+                            <constraint firstItem="o7x-zD-1zj" firstAttribute="top" secondItem="cy5-ed-1od" secondAttribute="bottom" id="zJf-FW-yc4"/>
                             <constraint firstItem="cy5-ed-1od" firstAttribute="leading" secondItem="ElM-ut-tdV" secondAttribute="leading" id="zqs-cd-PsI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ElM-ut-tdV"/>
                     </view>
                     <navigationItem key="navigationItem" id="PXT-6u-ZhS"/>
                     <connections>
+                        <outlet property="constraintViewToBottom" destination="1HJ-SS-E7o" id="oRz-aL-rCz"/>
                         <outlet property="newMessageField" destination="CrB-Oj-qjV" id="uo5-Zz-T6C"/>
                         <outlet property="tableView" destination="cy5-ed-1od" id="7T8-JX-hKm"/>
                     </connections>
