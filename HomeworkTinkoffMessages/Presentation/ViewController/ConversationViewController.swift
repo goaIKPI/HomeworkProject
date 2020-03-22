@@ -39,8 +39,8 @@ class ConversationViewController: UIViewController {
     
     @IBAction func sendMessage(_ sender: UIButton) {
         if newMessageField.text == "" {
-            showAlert(title: "Введите сообщение", message: "")
             newMessageField.endEditing(true)
+            showAlert(title: "Введите сообщение", message: "")
             return
         }
         let message = MessageCellModel(text: newMessageField.text!,
