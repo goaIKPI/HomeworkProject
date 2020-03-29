@@ -150,7 +150,6 @@ class ProfileViewController: UIViewController {
 //        gcdButton.isEnabled = false
 //        operationButton.isEnabled = false
         saveButton.isEnabled = false
-        print(editButton.frame)
         setCornersPhotoView()
         setEditButton()
         loadProfile()
@@ -164,13 +163,11 @@ class ProfileViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print(editButton.frame)
         /* Разные значения, потому что в viewDidAppear используются размеры размера на запускаемом устройстве,
          а в viewDidLoad используется размер экрана, указанного в .stoyboard */
     }
 
     @IBAction func openActionSheet(_ sender: UIButton) {
-        print("Выбери изображение профиля")
         showActionSheet()
     }
 

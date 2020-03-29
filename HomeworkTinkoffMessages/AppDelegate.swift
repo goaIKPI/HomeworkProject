@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        StorageManager(coreDataStack: NestedWorkersCoreDataStack.shared).getProfile(completion: { (profile) in
+            print("Initial user from CoreDataStack: \(profile)")
+        })
         return true
     }
 

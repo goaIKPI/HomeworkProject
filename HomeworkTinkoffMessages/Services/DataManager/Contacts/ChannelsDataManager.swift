@@ -34,7 +34,7 @@ class ChannelsDataManager: ChannelsDataManagerProtocol {
         })
 
         //Небольшой костыль за 3 минуты до сдачи
-        let text: String! = channel.message == nil ? channel.message: ""
+        let text = "\(Constant.User.name) создал канал"
         let dataModel =  MessageCellModel(text: text,
                                           isIncoming: true,
                                           date: Date(),

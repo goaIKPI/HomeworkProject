@@ -31,7 +31,6 @@ class ChannelInteractor: IChannelInteractor {
                 self?.onlineChannels = []
                 self?.historyChannels = []
                 for channel in channels {
-                    print(channel.date.timeIntervalSince(Date()))
                     if Date().timeIntervalSince(channel.date) < 600 {
                         self?.onlineChannels.append(channel)
                     } else {

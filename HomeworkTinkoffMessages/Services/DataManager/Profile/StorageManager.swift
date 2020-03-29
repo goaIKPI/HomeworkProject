@@ -28,6 +28,7 @@ class StorageManager: ProfileDataManager {
                 let profile = Profile(name: name,
                                       description: description,
                                       userImage: image)
+                Constant.User.name = profile.name
                 DispatchQueue.main.async {
                     completion(profile)
                 }
@@ -41,6 +42,7 @@ class StorageManager: ProfileDataManager {
         AppUser.getAppUser(in: coreDataStack.saveContext, completion: { (appUser) in
             if let appUser = appUser {
                 if newProfile.name != oldProfile.name {
+                    Constant.User.name = newProfile.name
                     appUser.name = newProfile.name
                 }
                 if newProfile.description != oldProfile.description {
