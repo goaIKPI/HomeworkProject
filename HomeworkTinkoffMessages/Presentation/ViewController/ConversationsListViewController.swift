@@ -10,31 +10,30 @@ import UIKit
 import Firebase
 
 class ConversationsListViewController: UIViewController {
-    
+
     @IBOutlet weak var tableView: UITableView!
-    
+
     let onlineUserConversations: [ConversationCellModel] = []
     let historyConversations: [ConversationCellModel] = []
-    
+
     private var channelInteractor = ChannelInteractor(channelDataManager: ChannelsDataManager())
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.register(UINib(nibName: String(describing: ConversationCell.self),
               bundle: Bundle.main), forCellReuseIdentifier: String(describing: ConversationCell.self))
-        
+
         tableView.dataSource = self
         tableView.delegate = self
         channelInteractor.getChannel(completion: completionHandler)
         title = "Tinkoff Chat"
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showConversation" {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            let conversationVC = segue.destination as! ConversationViewController
+            guard let conversationVC = segue.destination as? ConversationViewController else { return }
             if indexPath.section == 0 {
                 conversationVC.channel = channelInteractor.onlineChannels[indexPath.row]
                 conversationVC.title = channelInteractor.onlineChannels[indexPath.row].name
@@ -44,11 +43,11 @@ class ConversationsListViewController: UIViewController {
             }
         }
     }
-    
+
     func completionHandler() {
         tableView.reloadData()
     }
-    
+
     @IBAction func newChannel(_ sender: Any) {
         let controller = NewChannelViewController(nibName: "NewChannelViewController", bundle: nil)
         controller.title = "Создание канала"
@@ -58,7 +57,7 @@ class ConversationsListViewController: UIViewController {
 }
 
 extension ConversationsListViewController: UITableViewDelegate {
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showConversation", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
@@ -66,11 +65,11 @@ extension ConversationsListViewController: UITableViewDelegate {
 }
 
 extension ConversationsListViewController: UITableViewDataSource {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
@@ -81,7 +80,7 @@ extension ConversationsListViewController: UITableViewDataSource {
             return 0
         }
     }
-    
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
@@ -92,9 +91,12 @@ extension ConversationsListViewController: UITableViewDataSource {
             return ""
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ConversationCell.self)) as? ConversationCell else { return UITableViewCell() }
+        let identifier = String(describing: ConversationCell.self)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? ConversationCell else {
+            return UITableViewCell()
+        }
         if indexPath.section == 0 {
             cell.configure(with: channelInteractor.onlineChannels[indexPath.row])
         } else {

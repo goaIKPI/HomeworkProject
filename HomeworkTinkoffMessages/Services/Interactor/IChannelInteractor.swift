@@ -10,22 +10,22 @@ import Foundation
 
 protocol IChannelInteractor {
     var channelDataManager: ChannelsDataManagerProtocol {get set}
-    func getChannel(completion: @escaping () -> ())
+    func getChannel(completion: @escaping () -> Void)
     func createChannel(channel: ConversationCellModel, completion: @escaping CompletionErrorCreateChannel)
 }
 
 class ChannelInteractor: IChannelInteractor {
-    
+
     var onlineChannels: [ConversationCellModel] = []
     var historyChannels: [ConversationCellModel] = []
-    
+
     var channelDataManager: ChannelsDataManagerProtocol
-    
+
     init(channelDataManager: ChannelsDataManagerProtocol) {
         self.channelDataManager = channelDataManager
     }
-    
-    func getChannel(completion: @escaping () -> ()) {
+
+    func getChannel(completion: @escaping () -> Void) {
         channelDataManager.getChannels(completion: { (channels) in
             DispatchQueue.main.async { [weak self] in
                 self?.onlineChannels = []
@@ -42,14 +42,9 @@ class ChannelInteractor: IChannelInteractor {
             }
         })
     }
-    
+
     func createChannel(channel: ConversationCellModel, completion: @escaping CompletionErrorCreateChannel) {
         channelDataManager.createChannel(channel: channel, completion: completion)
     }
-    
-    
+
 }
-
-
-
-

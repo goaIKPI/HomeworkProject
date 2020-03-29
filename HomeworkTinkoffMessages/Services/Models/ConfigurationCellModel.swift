@@ -15,7 +15,7 @@ struct ConversationCellModel {
     let date: Date
     let isOnline: Bool
     let hasUnreadMessages: Bool
-    
+
     var stringDate: String {
         let dateFormatter = DateFormatter()
         let calendar = Calendar.current

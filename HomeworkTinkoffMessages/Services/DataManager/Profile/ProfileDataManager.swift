@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias CompletionSaveHandler = (Error?) -> ()
+typealias CompletionSaveHandler = (Error?) -> Void
 typealias CompletionProfileLoader = (IProfile) -> Void
 
 protocol ProfileDataManager {

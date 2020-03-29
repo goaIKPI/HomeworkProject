@@ -9,8 +9,8 @@
 import Foundation
 import Firebase
 
-typealias CompletionGetMessages = ([MessageCellModel]) -> ()
-typealias CompletionErrorSendMessage = (Error?) -> ()
+typealias CompletionGetMessages = ([MessageCellModel]) -> Void
+typealias CompletionErrorSendMessage = (Error?) -> Void
 
 protocol MessagesDataManagerProtocol {
     var channel: ConversationCellModel? {get set}
@@ -19,39 +19,40 @@ protocol MessagesDataManagerProtocol {
 }
 
 class MessagesDataManager: MessagesDataManagerProtocol {
-    
-    private lazy var db = Firestore.firestore()
-    var channel: ConversationCellModel? = nil
+
+    private lazy var dataBase = Firestore.firestore()
+    var channel: ConversationCellModel?
     var messages: [MessageCellModel] = []
     private lazy var referenceMessages: CollectionReference = {
     guard let channelIdentifier = channel?.identifier else { fatalError() }
-        return db.collection("channels").document(channelIdentifier).collection("messages")
+        return dataBase.collection("channels").document(channelIdentifier).collection("messages")
     }()
 
-    
-    
-    
     func getMessages(completion: @escaping CompletionGetMessages) {
-        referenceMessages.addSnapshotListener { [weak self] snapshot, error in
+        referenceMessages.addSnapshotListener { [weak self] snapshot, _ in
             guard let snapshot = snapshot else { return }
             self?.messages = []
             for snapshotItem in snapshot.documents {
-                self?.messages.append(MessageCellModel(text: snapshotItem["content"] as? String ?? "",
-                                                       isIncoming: (self?.isIncoming(id: snapshotItem["senderID"] as? String ?? ""))!,
-                                                       date: (snapshotItem["created"] as? Timestamp ?? Timestamp()).dateValue(),
-                                                       user: User(id: snapshotItem["senderID"] as? String ?? "",
-                                                                  name: snapshotItem["senderName"] as? String ?? "")))
+                guard let self = self else { return }
+                let inComing = self.isIncoming(identifier: snapshotItem["senderID"] as? String ?? "")
+                let date = (snapshotItem["created"] as? Timestamp ?? Timestamp()).dateValue()
+                let dataModel = MessageCellModel(text: snapshotItem["content"] as? String ?? "",
+                                                 isIncoming: inComing,
+                                                 date: date,
+                                                 user: User(identifier: snapshotItem["senderID"] as? String ?? "",
+                                                            name: snapshotItem["senderName"] as? String ?? ""))
+                self.messages.append(dataModel)
             }
             self?.messages.sort(by: {$0.date<$1.date})
             self?.messages.reverse()
             completion(self?.messages ?? [])
         }
     }
-    
-    func isIncoming(id: String) -> Bool {
-        return Int(id) == Constant.User.id ? false : true
+
+    func isIncoming(identifier: String) -> Bool {
+        return Int(identifier) == Constant.User.identifier ? false : true
     }
-    
+
     func sendMessage(message: MessageCellModel, completion: @escaping CompletionErrorSendMessage) {
         referenceMessages.addDocument(data: message.toDict, completion: { error in
             completion(error)

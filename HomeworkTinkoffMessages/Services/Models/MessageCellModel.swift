@@ -16,6 +16,6 @@ struct MessageCellModel {
 }
 
 struct User {
-    let id: String
+    let identifier: String
     let name: String
 }

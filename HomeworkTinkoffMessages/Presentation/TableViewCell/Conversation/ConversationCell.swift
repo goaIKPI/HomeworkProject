@@ -13,7 +13,7 @@ class ConversationCell: UITableViewCell, ConfigurableView {
     @IBOutlet weak var personNameLabel: UILabel!
     @IBOutlet weak var lastMessageLabel: UILabel!
     @IBOutlet weak var lastMessageTimeLabel: UILabel!
-    
+
     func configure(with model: ConversationCellModel) {
         personNameLabel.text = model.name
         if model.message == nil {
@@ -33,7 +33,5 @@ class ConversationCell: UITableViewCell, ConfigurableView {
             lastMessageLabel.font = UIFont.systemFont(ofSize: 17, weight: .heavy)
         }
     }
-    
 
-    
 }

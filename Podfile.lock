@@ -245,10 +245,12 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - SwiftLint (0.39.1)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Firestore
+  - SwiftLint
 
 SPEC REPOS:
   trunk:
@@ -269,6 +271,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - SwiftLint
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
@@ -288,7 +291,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
 
-PODFILE CHECKSUM: 1d2f3b5a5c22f381f2a1f3dd674d41f4c85f2ce0
+PODFILE CHECKSUM: 4672d700e5d6b77806ba7096b06124c91a5663c7
 
 COCOAPODS: 1.8.4

@@ -12,7 +12,7 @@ import UIKit
 protocol IProfileInteractor {
     var profile: IProfile! { get set }
     var profileDataManager: ProfileDataManager { get set }
-    func loadProfile(completion: @escaping ()->Void)
+    func loadProfile(completion: @escaping () -> Void)
     func saveProfile(name: String, description: String, image: UIImage, completion: @escaping CompletionSaveHandler)
     var name: String { get }
     var description: String { get }
@@ -20,9 +20,9 @@ protocol IProfileInteractor {
 }
 
 class ProfileInteractor: IProfileInteractor {
-    
+
     var profileDataManager: ProfileDataManager
-    
+
     var description: String {
         if profile.description == "" {
             return "Описание"
@@ -41,14 +41,13 @@ class ProfileInteractor: IProfileInteractor {
 
     var imageData: UIImage {
         if profile.userImage == UIImage() {
-            return UIImage(named: "placeholder-user")!
+            return UIImage(named: "placeholder-user") ?? UIImage()
         } else {
             return profile.userImage
         }
     }
 
     var profile: IProfile! = Profile()
-
 
     init(profileDataManager: ProfileDataManager) {
         self.profileDataManager = profileDataManager

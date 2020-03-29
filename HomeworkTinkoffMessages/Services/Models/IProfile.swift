@@ -18,6 +18,5 @@ protocol IProfile {
 struct Profile: IProfile {
     var name: String = "Имя"
     var description: String = "Описание"
-    var userImage: UIImage = UIImage(named: "placeholder-user")!
+    var userImage: UIImage = UIImage(named: "placeholder-user") ?? UIImage()
 }
-

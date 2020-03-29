@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 class GCDDataManager: ProfileDataManager {
-    
+
     let syncQueue = DispatchQueue(label: "com.tinkoffchat", qos: .userInitiated)
-    
+
     func saveName(_ name: String? = nil) throws {
         let file = "name.txt" //this is the file. we will write to and read from it
 
@@ -25,16 +25,14 @@ class GCDDataManager: ProfileDataManager {
             //writing
             do {
                 try text.write(to: path, atomically: false, encoding: String.Encoding.utf8)
-            }
-            catch {
+            } catch {
                 print(error.localizedDescription)
                 throw error
             }
         }
     }
-    
-    
-    func saveDescription(_ description: String? = nil) throws{
+
+    func saveDescription(_ description: String? = nil) throws {
         let file = "description.txt" //this is the file. we will write to and read from it
 
         let textOptional = description //just a text
@@ -46,65 +44,69 @@ class GCDDataManager: ProfileDataManager {
                         //writing
             do {
                 try text.write(to: path, atomically: false, encoding: String.Encoding.utf8)
-            }
-            catch {
+            } catch {
                 print(error.localizedDescription)
                 throw error
             }
         }
     }
-    
-    
+
     func saveImage(_ image: UIImage? = nil) throws {
         guard let image = image else { return }
         guard let data = image.jpegData(compressionQuality: 1) ?? image.pngData() else {
             return
         }
-        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
+        guard let directory = try? FileManager.default.url(for: .documentDirectory,
+                                                           in: .userDomainMask,
+                                                           appropriateFor: nil,
+                                                           create: false) as NSURL else {
             return
         }
         do {
             try data.write(to: directory.appendingPathComponent("photoPerson.png")!)
-
         } catch {
             print(error.localizedDescription)
             throw error
         }
     }
-    
+
     func getName() throws -> String? {
-        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else { return nil }
+        guard let directory = try? FileManager.default.url(for: .documentDirectory,
+                                                           in: .userDomainMask,
+                                                           appropriateFor: nil,
+                                                           create: false) as NSURL else { return nil }
         guard let fileURL = directory.appendingPathComponent("name.txt") else { return nil }
         do {
             let name = try String(contentsOf: fileURL, encoding: .utf8)
             return name
-            
-        }
-        catch { return nil }
+
+        } catch { return nil }
     }
-    
-    
+
     func getDescription() throws -> String? {
-        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else { return nil }
+        guard let directory = try? FileManager.default.url(for: .documentDirectory,
+                                                           in: .userDomainMask,
+                                                           appropriateFor: nil,
+                                                           create: false) as NSURL else { return nil }
         guard let fileURL = directory.appendingPathComponent("description.txt") else { return nil }
         do {
             let name = try String(contentsOf: fileURL, encoding: .utf8)
             return name
-            
-        }
-        catch { throw error }
+
+        } catch { throw error }
     }
-    
+
     func getImage() -> UIImage? {
-        guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
+        guard let documentsURL = FileManager.default.urls(for: .documentDirectory,
+                                                          in: .userDomainMask).first else { return nil }
         let filePath = documentsURL.appendingPathComponent("photoPerson.png").path
         if FileManager.default.fileExists(atPath: filePath) {
             return UIImage(contentsOfFile: filePath)
         }
         return nil
     }
-    
-    func getProfile(completion: @escaping (IProfile)->()) {
+
+    func getProfile(completion: @escaping (IProfile) -> Void) {
         syncQueue.async {
             do {
                 guard let name = try? self.getName() else { return }
@@ -113,10 +115,10 @@ class GCDDataManager: ProfileDataManager {
                 let profile = Profile(name: name, description: description, userImage: image)
                 completion(profile)
             }
-            
+
         }
     }
-    
+
     func saveProfile(newProfile: IProfile, oldProfile: IProfile, completion: @escaping CompletionSaveHandler) {
         syncQueue.async {
             if newProfile.name != oldProfile.name {
@@ -138,7 +140,7 @@ class GCDDataManager: ProfileDataManager {
                         return
                     }
                 }
-                
+
             }
             if newProfile.userImage != oldProfile.userImage {
                 do {
@@ -151,7 +153,7 @@ class GCDDataManager: ProfileDataManager {
                 }
             }
             completion(nil)
-            
+
         }
     }
 }
