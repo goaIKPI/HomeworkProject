@@ -13,7 +13,7 @@ typealias CompletionGetMessages = ([MessageCellModel]) -> Void
 typealias CompletionErrorSendMessage = (Error?) -> Void
 
 protocol MessagesDataManagerProtocol {
-    var channel: ConversationCellModel? {get set}
+    var channel: Conversation? {get set}
     func getMessages(completion: @escaping CompletionGetMessages)
     func sendMessage(message: MessageCellModel, completion: @escaping CompletionErrorSendMessage)
 }
@@ -21,10 +21,10 @@ protocol MessagesDataManagerProtocol {
 class MessagesDataManager: MessagesDataManagerProtocol {
 
     private lazy var dataBase = Firestore.firestore()
-    var channel: ConversationCellModel?
+    var channel: Conversation?
     var messages: [MessageCellModel] = []
     private lazy var referenceMessages: CollectionReference = {
-    guard let channelIdentifier = channel?.identifier else { fatalError() }
+        guard let channelIdentifier = channel?.conversationId else { fatalError() }
         return dataBase.collection("channels").document(channelIdentifier).collection("messages")
     }()
 
@@ -39,7 +39,7 @@ class MessagesDataManager: MessagesDataManagerProtocol {
                 let dataModel = MessageCellModel(text: snapshotItem["content"] as? String ?? "",
                                                  isIncoming: inComing,
                                                  date: date,
-                                                 user: User(identifier: snapshotItem["senderID"] as? String ?? "",
+                                                 user: UserModel(identifier: snapshotItem["senderID"] as? String ?? "",
                                                             name: snapshotItem["senderName"] as? String ?? ""))
                 self.messages.append(dataModel)
             }

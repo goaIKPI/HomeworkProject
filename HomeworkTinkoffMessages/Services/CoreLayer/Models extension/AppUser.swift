@@ -14,8 +14,7 @@ extension AppUser {
         let template = "AppUser"
         guard let request = model.fetchRequestTemplate(forName: template) as? NSFetchRequest<AppUser> else {
             assert(false, "No template with typename \(template)")
-            return nil
-        }
+            return nil }
         return request
     }
 
@@ -24,9 +23,9 @@ extension AppUser {
                                                                 into: context) as? AppUser else {
             return nil
         }
-        appUser.userImageData = (UIImage(named: "placeholder-user") ?? UIImage()).jpegData(compressionQuality: 1.0)
+        appUser.userImageData = UIImage(named: "placeholder-user")!.jpegData(compressionQuality: 1.0)
         appUser.descriptionUser = ""
-        appUser.name = UIDevice.current.name
+        appUser.currentUser?.name = UIDevice.current.name
         return appUser
     }
 

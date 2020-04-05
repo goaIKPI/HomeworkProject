@@ -13,12 +13,13 @@ import Firebase
 typealias CompletionGetChannels = ([ConversationCellModel]) -> Void
 typealias CompletionErrorCreateChannel = (Error?) -> Void
 
-protocol ChannelsDataManagerProtocol {
+protocol IChannelsDataManager {
     func getChannels(completion: @escaping CompletionGetChannels)
     func createChannel(channel: ConversationCellModel, completion: @escaping CompletionErrorCreateChannel)
+    func deleteChannel(channel: Conversation)
 }
 
-class ChannelsDataManager: ChannelsDataManagerProtocol {
+class ChannelsDataManager: IChannelsDataManager {
 
     private lazy var dataBase = Firestore.firestore()
     var channel: ConversationCellModel?
@@ -38,8 +39,8 @@ class ChannelsDataManager: ChannelsDataManagerProtocol {
         let dataModel =  MessageCellModel(text: text,
                                           isIncoming: true,
                                           date: Date(),
-                                          user: User(identifier: String(Constant.User.identifier),
-                                          name: Constant.User.name)).toDict
+                                          user: UserModel(identifier: String(Constant.User.identifier),
+                                                          name: Constant.User.name)).toDict
         document.collection("messages").addDocument(data: dataModel)
 
     }
@@ -61,6 +62,16 @@ class ChannelsDataManager: ChannelsDataManagerProtocol {
             }
             self?.channels.sort(by: {$0.date > $1.date})
             completion(self?.channels ?? [])
+        }
+    }
+
+    func deleteChannel(channel: Conversation) {
+        _ = self.referenceChannel.document(channel.conversationId ?? "").delete { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+            }
         }
     }
 

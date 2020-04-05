@@ -14,7 +14,9 @@ class NewChannelViewController: UIViewController {
     @IBOutlet weak var nameNewChannelField: UITextField!
     @IBOutlet weak var constraintButton: NSLayoutConstraint!
     private var buttonConstant: CGFloat = 32.0
-    private var channelInteractor = ChannelInteractor(channelDataManager: ChannelsDataManager())
+    private var channelInteractor = ChannelInteractor(channelDataManager: ChannelsDataManager(),
+                                                      channelRequester: ConversationFetchRequester(),
+                                                      coreDataStack: NestedWorkersCoreDataStack.shared)
 
     override func viewDidLoad() {
         super.viewDidLoad()

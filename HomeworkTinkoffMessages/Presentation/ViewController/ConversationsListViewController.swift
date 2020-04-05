@@ -8,22 +8,27 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class ConversationsListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    let onlineUserConversations: [ConversationCellModel] = []
-    let historyConversations: [ConversationCellModel] = []
-
-    private var channelInteractor = ChannelInteractor(channelDataManager: ChannelsDataManager())
+    private var channelInteractor = ChannelInteractor(channelDataManager: ChannelsDataManager(),
+                                                      channelRequester: ConversationFetchRequester(),
+                                                      coreDataStack: NestedWorkersCoreDataStack.shared)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.register(UINib(nibName: String(describing: ConversationCell.self),
               bundle: Bundle.main), forCellReuseIdentifier: String(describing: ConversationCell.self))
-
+        channelInteractor.fetchResultController.delegate = self
+        do {
+            try channelInteractor.fetchResultController.performFetch()
+        } catch {
+            assertionFailure("Error due perform fetch on fetchResultController")
+        }
         tableView.dataSource = self
         tableView.delegate = self
         channelInteractor.getChannel(completion: completionHandler)
@@ -34,13 +39,8 @@ class ConversationsListViewController: UIViewController {
         if segue.identifier == "showConversation" {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
             guard let conversationVC = segue.destination as? ConversationViewController else { return }
-            if indexPath.section == 0 {
-                conversationVC.channel = channelInteractor.onlineChannels[indexPath.row]
-                conversationVC.title = channelInteractor.onlineChannels[indexPath.row].name
-            } else {
-                conversationVC.channel = channelInteractor.historyChannels[indexPath.row]
-                conversationVC.title = channelInteractor.historyChannels[indexPath.row].name
-            }
+            conversationVC.conversation = channelInteractor.fetchResultController.object(at: indexPath)
+            conversationVC.title = channelInteractor.fetchResultController.object(at: indexPath).name
         }
     }
 
@@ -56,52 +56,100 @@ class ConversationsListViewController: UIViewController {
 
 }
 
+extension ConversationsListViewController: UITableViewDataSource {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return channelInteractor.fetchResultController.sections?.count ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let sections = channelInteractor.fetchResultController.sections else { return 0 }
+        return sections[section].numberOfObjects
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let conversationCell = tableView.dequeueReusableCell(withIdentifier: "ConversationCell",
+                                                                   for: indexPath) as? ConversationCell else {
+                                                                    return UITableViewCell() }
+        let conversation = channelInteractor.fetchResultController.object(at: indexPath)
+        conversationCell.configure(with: ConversationCellModel(identifier: conversation.conversationId ?? "",
+                                                               name: conversation.name ?? "",
+                                                               message: conversation.message,
+                                                               date: conversation.date ?? Date(),
+                                                               isOnline: conversation.isOnline,
+                                                               hasUnreadMessages: conversation.hasUnreadMessages))
+        return conversationCell
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let sections = channelInteractor.fetchResultController.sections else { return nil }
+        return sections[section].name == "1" ? "Online" : "History"
+    }
+}
+
 extension ConversationsListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showConversation", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Удалить") { (_, indexPath) in
+            self.channelInteractor.removeChat(conversation: self.channelInteractor.fetchResultController.object(at: indexPath))
+        }
+
+        return [deleteAction]
+    }
 }
 
-extension ConversationsListViewController: UITableViewDataSource {
+extension ConversationsListViewController: NSFetchedResultsControllerDelegate {
 
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any, at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .update:
+            tableView.reloadRows(at: [newIndexPath!], with: .none)
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .none)
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .none)
+        case.move:
+            tableView.deleteRows(at: [indexPath!], with: .none)
+            tableView.insertRows(at: [newIndexPath!], with: .none)
+        @unknown default:
+            return
+        }
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return channelInteractor.onlineChannels.count
-        case 1:
-            return channelInteractor.historyChannels.count
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    sectionIndexTitleForSectionName sectionName: String) -> String? {
+        return sectionName
+    }
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange sectionInfo: NSFetchedResultsSectionInfo,
+                    atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        let indexSet = IndexSet(integer: sectionIndex)
+        switch type {
+        case .insert:
+            tableView.insertSections(indexSet, with: .none)
+        case .delete:
+            tableView.deleteSections(indexSet, with: .none)
+        case .update:
+            tableView.reloadSections(indexSet, with: .none)
         default:
-            return 0
+            return
         }
-    }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return "Online"
-        case 1:
-             return "History"
-        default:
-            return ""
-        }
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let identifier = String(describing: ConversationCell.self)
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? ConversationCell else {
-            return UITableViewCell()
-        }
-        if indexPath.section == 0 {
-            cell.configure(with: channelInteractor.onlineChannels[indexPath.row])
-        } else {
-            cell.configure(with: channelInteractor.historyChannels[indexPath.row])
-        }
-        return cell
     }
 }
