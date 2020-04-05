@@ -14,13 +14,18 @@ struct OperationDataManager: ProfileDataManager {
     let operationQueue: OperationQueue
 
     init(queue: OperationQueue = OperationQueue()) {
+        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory,
+                                                                in: .userDomainMask).first else {
+            fatalError()
+
+        }
         operationQueue = queue
-        documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        self.documentsDirectory = documentsDirectory
         operationQueue.qualityOfService = .userInitiated
         operationQueue.maxConcurrentOperationCount = 1
     }
 
-    func saveProfile(newProfile: IProfile, oldProfile:  IProfile, completion: @escaping CompletionSaveHandler) {
+    func saveProfile(newProfile: IProfile, oldProfile: IProfile, completion: @escaping CompletionSaveHandler) {
         let saveOperation = SaveProfileOperation()
         saveOperation.completionHandler = completion
         saveOperation.newProfile = newProfile
@@ -47,32 +52,36 @@ class ProfileLoadingOperation: Operation {
         profile = Profile(name: name, description: description, userImage: imageData)
         OperationQueue.main.addOperation { self.completionHandler(self.profile) }
     }
-    
+
     func getName() -> String? {
-        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else { return nil }
+        guard let directory = try? FileManager.default.url(for: .documentDirectory,
+                                                           in: .userDomainMask,
+                                                           appropriateFor: nil,
+                                                           create: false) as NSURL else { return nil }
         guard let fileURL = directory.appendingPathComponent("name.txt") else { return nil }
         do {
             let name = try String(contentsOf: fileURL, encoding: .utf8)
             return name
-               
-        }
-        catch { return "" }
+
+        } catch { return "" }
     }
-       
-       
+
     func getDescription() -> String? {
-        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else { return nil }
+        guard let directory = try? FileManager.default.url(for: .documentDirectory,
+                                                           in: .userDomainMask,
+                                                           appropriateFor: nil,
+                                                           create: false) as NSURL else { return nil }
         guard let fileURL = directory.appendingPathComponent("description.txt") else { return nil }
         do {
             let name = try String(contentsOf: fileURL, encoding: .utf8)
             return name
-               
-        }
-        catch { return "" }
+
+        } catch { return "" }
     }
-       
+
     func getImage() -> UIImage? {
-        guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
+        guard let documentsURL = FileManager.default.urls(for: .documentDirectory,
+                                                          in: .userDomainMask).first else { return nil }
         let filePath = documentsURL.appendingPathComponent("photoPerson.png").path
         if FileManager.default.fileExists(atPath: filePath) {
             return UIImage(contentsOfFile: filePath)
@@ -113,7 +122,7 @@ class SaveProfileOperation: Operation {
             self.completionHandler(nil)
         }
     }
-    
+
     func saveName(_ name: String? = nil) throws {
         let file = "name.txt" //this is the file. we will write to and read from it
 
@@ -126,16 +135,14 @@ class SaveProfileOperation: Operation {
             //writing
             do {
                 try text.write(to: path, atomically: false, encoding: String.Encoding.utf8)
-            }
-            catch {
+            } catch {
                 print(error.localizedDescription)
                 throw error
             }
         }
     }
-       
-       
-    func saveDescription(_ description: String? = nil) throws{
+
+    func saveDescription(_ description: String? = nil) throws {
         let file = "description.txt" //this is the file. we will write to and read from it
 
         let textOptional = description //just a text
@@ -147,21 +154,21 @@ class SaveProfileOperation: Operation {
                            //writing
             do {
                 try text.write(to: path, atomically: false, encoding: String.Encoding.utf8)
-            }
-            catch {
+            } catch {
                 print(error.localizedDescription)
                 throw error
             }
         }
     }
-       
-       
+
     func saveImage(_ image: UIImage? = nil) throws {
         guard let image = image else { return }
         guard let data = image.jpegData(compressionQuality: 1) ?? image.pngData() else {
             return
         }
-        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
+        guard let directory = try? FileManager.default.url(for: .documentDirectory,
+                                                           in: .userDomainMask,
+                                                           appropriateFor: nil, create: false) as NSURL else {
             return
         }
         do {

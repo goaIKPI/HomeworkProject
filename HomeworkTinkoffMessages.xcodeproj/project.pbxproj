@@ -31,6 +31,10 @@
 		911015D7241E7CE6002CB9AB /* IProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911015D6241E7CE6002CB9AB /* IProfile.swift */; };
 		911015D9241E868E002CB9AB /* IProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911015D8241E868E002CB9AB /* IProfileInteractor.swift */; };
 		911015DB241E88DD002CB9AB /* ProfileDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911015DA241E88DD002CB9AB /* ProfileDataManager.swift */; };
+		9162E486242E6E6500DA5386 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9162E485242E6E6500DA5386 /* StorageManager.swift */; };
+		9162E489242E707200DA5386 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9162E488242E707200DA5386 /* CoreDataStack.swift */; };
+		9162E48C242E781500DA5386 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9162E48A242E781500DA5386 /* DataModel.xcdatamodeld */; };
+		9162E48F2430811900DA5386 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9162E48E2430811900DA5386 /* AppUser.swift */; };
 		9185F3F423F5A5DF00A1F845 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9185F3F323F5A5DF00A1F845 /* AppDelegate.swift */; };
 		9185F3FB23F5A5DF00A1F845 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9185F3F923F5A5DF00A1F845 /* Main.storyboard */; };
 		9185F3FD23F5A5E400A1F845 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9185F3FC23F5A5E400A1F845 /* Assets.xcassets */; };
@@ -65,6 +69,10 @@
 		911015D6241E7CE6002CB9AB /* IProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProfile.swift; sourceTree = "<group>"; };
 		911015D8241E868E002CB9AB /* IProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProfileInteractor.swift; sourceTree = "<group>"; };
 		911015DA241E88DD002CB9AB /* ProfileDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataManager.swift; sourceTree = "<group>"; };
+		9162E485242E6E6500DA5386 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		9162E488242E707200DA5386 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		9162E48B242E781500DA5386 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		9162E48E2430811900DA5386 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		9185F3F023F5A5DF00A1F845 /* HomeworkTinkoffMessages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeworkTinkoffMessages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9185F3F323F5A5DF00A1F845 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9185F3FA23F5A5DF00A1F845 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -176,6 +184,7 @@
 				911015D0241E74C8002CB9AB /* GCDDataManager.swift */,
 				911015DA241E88DD002CB9AB /* ProfileDataManager.swift */,
 				911015D2241E74DE002CB9AB /* OperationDataManager.swift */,
+				9162E485242E6E6500DA5386 /* StorageManager.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -206,6 +215,16 @@
 			path = DataManager;
 			sourceTree = "<group>";
 		};
+		9162E487242E705500DA5386 /* CoreLayer */ = {
+			isa = PBXGroup;
+			children = (
+				9162E488242E707200DA5386 /* CoreDataStack.swift */,
+				9162E48A242E781500DA5386 /* DataModel.xcdatamodeld */,
+				9162E48E2430811900DA5386 /* AppUser.swift */,
+			);
+			path = CoreLayer;
+			sourceTree = "<group>";
+		};
 		916E5C9A2427F62C006362E5 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +240,7 @@
 		916E5C9B2427F639006362E5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				9162E487242E705500DA5386 /* CoreLayer */,
 				91100AB32427C19D001259F1 /* Constant.swift */,
 				911015CF241E7485002CB9AB /* DataManager */,
 				91100AB92427DC2D001259F1 /* Interactor */,
@@ -268,6 +288,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9185F40423F5A5E400A1F845 /* Build configuration list for PBXNativeTarget "HomeworkTinkoffMessages" */;
 			buildPhases = (
+				9162E48D242F5AAA00DA5386 /* ShellScript */,
 				7C3C623859ABB823C7A5B888 /* [CP] Check Pods Manifest.lock */,
 				9185F3EC23F5A5DF00A1F845 /* Sources */,
 				9185F3ED23F5A5DF00A1F845 /* Frameworks */,
@@ -373,6 +394,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HomeworkTinkoffMessages/Pods-HomeworkTinkoffMessages-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9162E48D242F5AAA00DA5386 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -381,6 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				910A8217240BF95500106559 /* ConfigurationCellModel.swift in Sources */,
+				9162E489242E707200DA5386 /* CoreDataStack.swift in Sources */,
 				911015D3241E74DE002CB9AB /* OperationDataManager.swift in Sources */,
 				911015D9241E868E002CB9AB /* IProfileInteractor.swift in Sources */,
 				91100AB42427C19D001259F1 /* Constant.swift in Sources */,
@@ -388,11 +427,14 @@
 				910A821D240BF95500106559 /* MessageCell.swift in Sources */,
 				910A8216240BF95500106559 /* ProfileViewController.swift in Sources */,
 				91100ABE2427DCC1001259F1 /* ChannelsDataManager.swift in Sources */,
+				9162E48C242E781500DA5386 /* DataModel.xcdatamodeld in Sources */,
 				911015CE241E3F60002CB9AB /* ExtensionViewController.swift in Sources */,
+				9162E48F2430811900DA5386 /* AppUser.swift in Sources */,
 				91100AC02427E08A001259F1 /* IChannelInteractor.swift in Sources */,
 				91100AB72427C710001259F1 /* NewChannelViewController.swift in Sources */,
 				910A8218240BF95500106559 /* ConversationViewController.swift in Sources */,
 				91100AC22427E909001259F1 /* IMessagesInteractor.swift in Sources */,
+				9162E486242E6E6500DA5386 /* StorageManager.swift in Sources */,
 				911015D1241E74C8002CB9AB /* GCDDataManager.swift in Sources */,
 				911015DB241E88DD002CB9AB /* ProfileDataManager.swift in Sources */,
 				910A8219240BF95500106559 /* ConfigurableView.swift in Sources */,
@@ -602,6 +644,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9162E48A242E781500DA5386 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9162E48B242E781500DA5386 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 9162E48B242E781500DA5386 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9185F3E823F5A5DF00A1F845 /* Project object */;
 }

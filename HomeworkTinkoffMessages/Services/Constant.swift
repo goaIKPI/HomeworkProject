@@ -11,8 +11,7 @@ import Foundation
 class Constant {
     enum User {
         // Рандомные значения лол
-        static var id: Int = 9383293
+        static var identifier: Int = 9383293
         static var name: String = "Oleg"
     }
 }
-

@@ -1,39 +1,39 @@
 import Foundation
 
 public class Company {
-    
+
     public weak var ceo: Ceo?
     public weak var productManager: ProductManager?
     public var developers: [Developer?]?
-    
+
     public init() {
         ceo = nil
         productManager = nil
         developers = nil
     }
-    
+
     deinit {
         print("Company deinit")
     }
-    
+
     public init(ceo: Ceo, productManager: ProductManager, developers: [Developer?]?) {
         self.ceo = ceo
         self.productManager = productManager
         self.developers = developers
     }
-    
+
     public func returnCompany() -> Company {
         guard let developersGuard = self.developers else { return Company() }
         guard let productManagerGuard = self.productManager else { return Company() }
         guard let ceoGuard = self.ceo else { return Company() }
-        
+
         return Company(ceo: ceoGuard, productManager: productManagerGuard, developers: developersGuard)
     }
-    
+
 }
 
 extension Company {
-    
+
     public func simulationChat() {
         print("Симуляция чата")
         guard let developersGuard = self.developers else { return }
@@ -57,5 +57,5 @@ extension Company {
         }
         print("Симуляция чата окончена \n")
     }
-    
+
 }

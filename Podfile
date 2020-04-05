@@ -6,6 +6,7 @@ target 'HomeworkTinkoffMessages' do
   use_frameworks!
   pod 'Firebase/Firestore'
   pod 'Firebase/Auth'
+  pod 'SwiftLint'
   # Pods for HomeworkTinkoffMessages
 
 end
