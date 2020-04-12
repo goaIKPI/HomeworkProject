@@ -11,13 +11,13 @@ import Firebase
 
 class ConversationViewController: UIViewController {
 
-    private var messagesInteractor = MessagesInteractor(messageDataManager: MessagesDataManager())
+    private var messagesInteractor: MessagesInteractor!
 
     @IBOutlet weak var constraintViewToBottom: NSLayoutConstraint!
 
     @IBOutlet weak var newMessageField: UITextField!
 
-    var channel: ConversationCellModel?
+    var conversation: Conversation!
 
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -29,9 +29,10 @@ class ConversationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        messagesInteractor = MessagesInteractor(messageDataManager: MessagesDataManager())
         tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
         registerNotifications()
-        messagesInteractor.messageDataManager.channel = channel
+        messagesInteractor.messageDataManager.firebaseRequester.channel = conversation
         messagesInteractor.getMessages(completion: completionGetHandler)
     }
 
@@ -45,7 +46,7 @@ class ConversationViewController: UIViewController {
         let message = MessageCellModel(text: text,
                                        isIncoming: true,
                                        date: Date(),
-                                       user: User(identifier: String(Constant.User.identifier),
+                                       user: UserModel(identifier: String(Constant.User.identifier),
                                                   name: Constant.User.name))
         newMessageField.endEditing(true)
         newMessageField.text = ""

@@ -20,7 +20,7 @@ class StorageManager: ProfileDataManager {
     func getProfile(completion: @escaping CompletionProfileLoader) {
         AppUser.getAppUser(in: coreDataStack.saveContext, completion: { (appUser) in
             if let appUser = appUser {
-                let name: String = appUser.name ?? Constant.User.name
+                let name: String = appUser.currentUser?.name ?? Constant.User.name
                 let description: String = appUser.descriptionUser ?? ""
                 let imageData = appUser.userImageData ??
                     (UIImage(named: "placeholder-user") ?? UIImage()).jpegData(compressionQuality: 1.0)
@@ -43,7 +43,7 @@ class StorageManager: ProfileDataManager {
             if let appUser = appUser {
                 if newProfile.name != oldProfile.name {
                     Constant.User.name = newProfile.name
-                    appUser.name = newProfile.name
+                    appUser.currentUser?.name = newProfile.name
                 }
                 if newProfile.description != oldProfile.description {
                     appUser.descriptionUser = newProfile.description

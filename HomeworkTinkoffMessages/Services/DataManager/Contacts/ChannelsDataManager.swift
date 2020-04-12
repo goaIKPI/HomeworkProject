@@ -13,55 +13,26 @@ import Firebase
 typealias CompletionGetChannels = ([ConversationCellModel]) -> Void
 typealias CompletionErrorCreateChannel = (Error?) -> Void
 
-protocol ChannelsDataManagerProtocol {
+protocol IChannelsDataManager {
     func getChannels(completion: @escaping CompletionGetChannels)
     func createChannel(channel: ConversationCellModel, completion: @escaping CompletionErrorCreateChannel)
+    func deleteChannel(channel: Conversation)
 }
 
-class ChannelsDataManager: ChannelsDataManagerProtocol {
+class ChannelsDataManager: IChannelsDataManager {
 
-    private lazy var dataBase = Firestore.firestore()
-    var channel: ConversationCellModel?
-    var channels: [ConversationCellModel] = []
-
-    private lazy var referenceChannel: CollectionReference = {
-        return dataBase.collection("channels")
-    }()
+    var firebaseRequester: IConversationFirebaseRequester = ConversationFirebaseRequester()
 
     func createChannel(channel: ConversationCellModel, completion: @escaping CompletionErrorCreateChannel) {
-        let document = referenceChannel.addDocument(data: channel.toDict, completion: { error in
-            completion(error)
-        })
-
-        //Небольшой костыль за 3 минуты до сдачи
-        let text = "\(Constant.User.name) создал канал"
-        let dataModel =  MessageCellModel(text: text,
-                                          isIncoming: true,
-                                          date: Date(),
-                                          user: User(identifier: String(Constant.User.identifier),
-                                          name: Constant.User.name)).toDict
-        document.collection("messages").addDocument(data: dataModel)
-
+        firebaseRequester.createChannel(channel: channel, completion: completion)
     }
 
     func getChannels(completion: @escaping CompletionGetChannels) {
-        referenceChannel.addSnapshotListener { [weak self] snapshot, _ in
-            guard let snapshot = snapshot else { return }
-            self?.channels = []
-            for snapshotItem in snapshot.documents {
-                let timestamp = snapshotItem.data()["lastActivity"] as? Timestamp
-                let date = (timestamp ?? Timestamp(seconds: 0, nanoseconds: 0)).dateValue()
-                let dataModel = ConversationCellModel(identifier: snapshotItem.documentID,
-                                                      name: snapshotItem.data()["name"] as? String ?? "",
-                                                      message: snapshotItem.data()["lastMessage"] as? String ?? "",
-                                                      date: date,
-                                                      isOnline: true,
-                                                      hasUnreadMessages: false)
-                self?.channels.append(dataModel)
-            }
-            self?.channels.sort(by: {$0.date > $1.date})
-            completion(self?.channels ?? [])
-        }
+        firebaseRequester.getChannels(completion: completion)
+    }
+
+    func deleteChannel(channel: Conversation) {
+        firebaseRequester.deleteChannel(channel: channel)
     }
 
 }

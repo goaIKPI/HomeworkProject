@@ -12,10 +12,10 @@ struct MessageCellModel {
     let text: String
     let isIncoming: Bool
     let date: Date
-    let user: User
+    let user: UserModel
 }
 
-struct User {
+struct UserModel {
     let identifier: String
     let name: String
 }

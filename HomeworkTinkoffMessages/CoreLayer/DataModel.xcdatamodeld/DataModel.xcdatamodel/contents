@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19A578c" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AppUser" representedClassName="AppUser" syncable="YES" codeGenerationType="class">
+        <attribute name="descriptionUser" optional="YES" attributeType="String"/>
+        <attribute name="userImageData" optional="YES" attributeType="Binary"/>
+        <relationship name="currentUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserStack" inverseName="appUser" inverseEntity="UserStack"/>
+    </entity>
+    <entity name="Conversation" representedClassName=".Conversation" syncable="YES" codeGenerationType="class">
+        <attribute name="conversationId" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="hasUnreadMessages" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isOnline" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="message" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="lastMessage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Message" inverseName="conversationOwner" inverseEntity="Message"/>
+        <relationship name="messageHistory" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="conversation" inverseEntity="Message"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserStack" inverseName="conversation" inverseEntity="UserStack"/>
+    </entity>
+    <entity name="Message" representedClassName="Message" syncable="YES" codeGenerationType="class">
+        <attribute name="conversationId" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="isIncoming" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
+        <attribute name="userName" optional="YES" attributeType="String"/>
+        <relationship name="conversation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="messageHistory" inverseEntity="Conversation"/>
+        <relationship name="conversationOwner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="lastMessage" inverseEntity="Conversation"/>
+    </entity>
+    <entity name="UserStack" representedClassName="UserStack" syncable="YES" codeGenerationType="class">
+        <attribute name="isOnline" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="userId" optional="YES" attributeType="String"/>
+        <relationship name="appUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AppUser" inverseName="currentUser" inverseEntity="AppUser"/>
+        <relationship name="conversation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="user" inverseEntity="Conversation"/>
+    </entity>
+    <fetchRequest name="AppUser" entity="AppUser"/>
+    <fetchRequest name="ConversationWithId" entity="Conversation" predicateString="conversationId == $conversationId"/>
+    <fetchRequest name="MessagesFromConversation" entity="Message" predicateString="conversationId == $conversationId" resultType="2"/>
+    <fetchRequest name="OnlineNonEmptyConversations" entity="Conversation" predicateString="messageHistory.@count &gt; 0 AND user.isOnline == 1"/>
+    <fetchRequest name="UsersOnline" entity="UserStack" predicateString="isOnline == 1"/>
+    <fetchRequest name="UserWithId" entity="UserStack" predicateString="userId == $userId"/>
+    <elements>
+        <element name="Message" positionX="-54" positionY="18" width="128" height="148"/>
+        <element name="Conversation" positionX="-36" positionY="63" width="128" height="178"/>
+        <element name="UserStack" positionX="-18" positionY="99" width="128" height="118"/>
+        <element name="AppUser" positionX="9" positionY="144" width="128" height="88"/>
+    </elements>
+</model>

@@ -7,14 +7,15 @@
 //
 
 import Foundation
+import CoreData
 
 struct ConversationCellModel {
-    let identifier: String
-    let name: String
-    let message: String?
-    let date: Date
-    let isOnline: Bool
-    let hasUnreadMessages: Bool
+    var identifier: String
+    var name: String
+    var message: String?
+    var date: Date
+    var isOnline: Bool
+    var hasUnreadMessages: Bool
 
     var stringDate: String {
         let dateFormatter = DateFormatter()
@@ -26,4 +27,5 @@ struct ConversationCellModel {
         }
         return dateFormatter.string(from: date)
     }
+
 }
