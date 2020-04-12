@@ -32,8 +32,7 @@ class ConversationViewController: UIViewController {
         messagesInteractor = MessagesInteractor(messageDataManager: MessagesDataManager())
         tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
         registerNotifications()
-        messagesInteractor.messageDataManager.channel = conversation
-        //messagesInteractor.getMessagesWithStack(completion: completionGetHandler)
+        messagesInteractor.messageDataManager.firebaseRequester.channel = conversation
         messagesInteractor.getMessages(completion: completionGetHandler)
     }
 

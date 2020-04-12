@@ -68,45 +68,6 @@ class ChannelInteractor: IChannelInteractor {
         channelDataManager.deleteChannel(channel: conversation)
     }
 
-//    func getChannelWithStack(completion: @escaping () -> Void) {
-//        container.loadPersistentStores { (_, error) in
-//            if error != nil {
-//            }
-//        }
-//        container.performBackgroundTask { (context) in
-//            let request = NSFetchRequest<Conversation>(entityName: "Conversation")
-//            do {
-//                let result = try context.fetch(request)
-//                result.forEach({ (channel) in
-//                    var cell = ConversationCellModel(identifier: channel.conversationId ?? "",
-//                                                    name: channel.name ?? "",
-//                                                    message: channel.message,
-//                                                    date: channel.date ?? Date(),
-//                                                    isOnline: channel.isOnline,
-//                                                    hasUnreadMessages: channel.hasUnreadMessages)
-//                    if Date().timeIntervalSince(channel.date ?? Date()) < 600 {
-//                        cell.isOnline = true
-//                        self.onlineChannels.append(cell)
-//                    } else {
-//                        cell.isOnline = false
-//                        self.historyChannels.append(cell)
-//                    }
-//                })
-//                DispatchQueue.main.async {
-//                    do {
-//                        try self.fetchResultController.performFetch()
-//                    } catch {
-//                        assertionFailure("Error due perform fetch on fetchResultController")
-//                    }
-//                    completion()
-//                }
-//            } catch {
-//                print("Fetching data Failed")
-//            }
-//        }
-//
-//    }
-
     func saveChannelWithStack(channels: [ConversationCellModel], completion: @escaping () -> Void) {
         container.loadPersistentStores { (_, error) in
             if error != nil {

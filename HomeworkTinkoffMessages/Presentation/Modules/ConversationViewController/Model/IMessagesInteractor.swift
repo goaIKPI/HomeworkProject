@@ -43,35 +43,6 @@ class MessagesInteractor: IMessagesInteractor {
         }
     }
 
-//    func getMessagesWithStack(completion: @escaping ()->()) {
-//        container.loadPersistentStores { (_, error) in
-//            if error != nil {
-//            }
-//        }
-//        container.performBackgroundTask { (context) in
-//            let request = NSFetchRequest<Message>(entityName: "Message")
-//            let predicate = NSPredicate(format: "conversationId == %@", "")
-//            request.predicate = predicate
-//            do {
-//                self.messages = []
-//                let result = try context.fetch(request)
-//                result.forEach({ (message) in
-//                    self.messages.append(MessageCellModel(text: message.text ?? "",
-//                                                          isIncoming: message.isIncoming,
-//                                                          date: message.date ?? Date(),
-//                                                          user: UserModel(identifier: message.conversationId ?? "",
-//                                                                          name: message.conversation?.name ?? "")))
-//                })
-//                DispatchQueue.main.async {
-//                    completion()
-//                }
-//            } catch {
-//                print("Fetching data Failed")
-//            }
-//        }
-//
-//    }
-
     func saveMessageWithStack(messages: [MessageCellModel]) {
         container.loadPersistentStores { (_, error) in
             if error != nil {
