@@ -17,8 +17,6 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var descriptionField: UITextField!
-    //@IBOutlet weak var gcdButton: UIButton!
-    //@IBOutlet weak var operationButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
 
     @IBOutlet weak var cancelNavItem: UIBarButtonItem!
@@ -33,8 +31,6 @@ class ProfileViewController: UIViewController {
                                     NestedWorkersCoreDataStack.shared))
     var isEdit: Bool = false {
         didSet {
-//            operationButton.isHidden = !operationButton.isHidden
-//            gcdButton.isHidden = !gcdButton.isHidden
             replacePhotoButton.isHidden = !replacePhotoButton.isHidden
             nameField.isHidden = !nameField.isHidden
             saveButton.isHidden = !saveButton.isHidden
@@ -245,6 +241,17 @@ class ProfileViewController: UIViewController {
             self.replacePhotoButton.isEnabled = true
         }
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToDownloadImages" {
+            guard let navigationController = segue.destination as? UINavigationController,
+                let loaderImageVC = navigationController.topViewController as? LoaderImageViewController else {
+                super.prepare(for: segue, sender: sender)
+                return
+            }
+            loaderImageVC.profileController = self
+        }
+    }
 }
 
 // MARK: - Image Picker
@@ -307,6 +314,12 @@ private extension ProfileViewController {
                                             style: UIAlertAction.Style.default,
                                             handler: { (_: UIAlertAction) -> Void in
             self.openCamera()
+        }))
+
+        actionSheet.addAction(UIAlertAction(title: "Загрузить фото",
+                                            style: UIAlertAction.Style.default,
+                                            handler: { (_: UIAlertAction) -> Void in
+            self.performSegue(withIdentifier: "segueToDownloadImages", sender: nil)
         }))
 
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
