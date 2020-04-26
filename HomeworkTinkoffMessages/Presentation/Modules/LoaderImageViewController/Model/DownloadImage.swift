@@ -26,9 +26,4 @@ struct ImageRequest: Codable {
     enum CodingKeys: String, CodingKey {
         case url = "userImageURL"
     }
-
-//    init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: CodingKeys.self)
-//        url = try container.decode(URL.self, forKey: .url)
-//    }
 }

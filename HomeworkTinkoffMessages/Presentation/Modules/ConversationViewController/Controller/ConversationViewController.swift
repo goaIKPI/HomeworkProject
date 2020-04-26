@@ -16,6 +16,7 @@ class ConversationViewController: UIViewController {
     @IBOutlet weak var constraintViewToBottom: NSLayoutConstraint!
 
     @IBOutlet weak var newMessageField: UITextField!
+    @IBOutlet weak var sendMessageButton: UIButton!
 
     var conversation: Conversation!
 
@@ -36,6 +37,14 @@ class ConversationViewController: UIViewController {
         messagesInteractor.getMessages(completion: completionGetHandler)
     }
 
+    @IBAction func newMessageFieldChanged(_ sender: UITextField) {
+        if sender.text == "" {
+            animateButton(enabled: false)
+        } else if sender.text?.count == 1 {
+            animateButton(enabled: true)
+        }
+    }
+
     @IBAction func sendMessage(_ sender: UIButton) {
         if newMessageField.text == "" {
             newMessageField.endEditing(true)
@@ -50,7 +59,9 @@ class ConversationViewController: UIViewController {
                                                   name: Constant.User.name))
         newMessageField.endEditing(true)
         newMessageField.text = ""
+        animateButton(enabled: false)
         messagesInteractor.sendMessage(message: message, completion: completionSendMessage(error:))
+
     }
 
     private func registerNotifications() {
@@ -86,6 +97,15 @@ class ConversationViewController: UIViewController {
         } else {
             showAlert(title: "Произошла ошибка", message: "")
         }
+    }
+
+    func animateButton(enabled: Bool) {
+        self.sendMessageButton.isEnabled = enabled
+        UIView.animate(withDuration: 0.5, animations: {
+            self.sendMessageButton.transform = CGAffineTransform(scaleX: 1.15, y: 1.15)
+        }, completion: { _ in
+            self.sendMessageButton.transform = .identity
+        })
     }
 }
 

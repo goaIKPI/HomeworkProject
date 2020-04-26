@@ -32,6 +32,8 @@
 		911015DB241E88DD002CB9AB /* ProfileDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911015DA241E88DD002CB9AB /* ProfileDataManager.swift */; };
 		914241FD2443939E0045FCE4 /* MessagesFirebaseRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914241FC2443939E0045FCE4 /* MessagesFirebaseRequester.swift */; };
 		914241FF244395C10045FCE4 /* ConversationFirebaseRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914241FE244395C10045FCE4 /* ConversationFirebaseRequester.swift */; };
+		914E8A4B2455DF8C0001145A /* EmitterWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914E8A492455DF8C0001145A /* EmitterWindow.swift */; };
+		914E8A4C2455DF8C0001145A /* Emitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914E8A4A2455DF8C0001145A /* Emitter.swift */; };
 		9162E486242E6E6500DA5386 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9162E485242E6E6500DA5386 /* StorageManager.swift */; };
 		9162E489242E707200DA5386 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9162E488242E707200DA5386 /* CoreDataStack.swift */; };
 		9162E48C242E781500DA5386 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9162E48A242E781500DA5386 /* DataModel.xcdatamodeld */; };
@@ -95,6 +97,8 @@
 		911015DA241E88DD002CB9AB /* ProfileDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataManager.swift; sourceTree = "<group>"; };
 		914241FC2443939E0045FCE4 /* MessagesFirebaseRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesFirebaseRequester.swift; sourceTree = "<group>"; };
 		914241FE244395C10045FCE4 /* ConversationFirebaseRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationFirebaseRequester.swift; sourceTree = "<group>"; };
+		914E8A492455DF8C0001145A /* EmitterWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmitterWindow.swift; sourceTree = "<group>"; };
+		914E8A4A2455DF8C0001145A /* Emitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emitter.swift; sourceTree = "<group>"; };
 		9162E485242E6E6500DA5386 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		9162E488242E707200DA5386 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		9162E48B242E781500DA5386 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -377,6 +381,23 @@
 			path = Firebase;
 			sourceTree = "<group>";
 		};
+		914E8A472455DF8C0001145A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				914E8A482455DF8C0001145A /* Emitter */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		914E8A482455DF8C0001145A /* Emitter */ = {
+			isa = PBXGroup;
+			children = (
+				914E8A492455DF8C0001145A /* EmitterWindow.swift */,
+				914E8A4A2455DF8C0001145A /* Emitter.swift */,
+			);
+			path = Emitter;
+			sourceTree = "<group>";
+		};
 		9162E487242E705500DA5386 /* CoreLayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,6 +416,7 @@
 		916E5C9A2427F62C006362E5 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				914E8A472455DF8C0001145A /* UI */,
 				919A32A2244C9C2B006DA9D9 /* Assembly */,
 				914241F9244377550045FCE4 /* Protocols */,
 				914241E6244370BB0045FCE4 /* Modules */,
@@ -731,9 +753,11 @@
 				9185F3F423F5A5DF00A1F845 /* AppDelegate.swift in Sources */,
 				919A329F244C991D006DA9D9 /* ImageDownloadManager.swift in Sources */,
 				910A821B240BF95500106559 /* MessageCellModel.swift in Sources */,
+				914E8A4B2455DF8C0001145A /* EmitterWindow.swift in Sources */,
 				917492B32439DF7B009597ED /* MessageFetchRequester.swift in Sources */,
 				910A8221240BF95500106559 /* ConversationCell.swift in Sources */,
 				911015D7241E7CE6002CB9AB /* IProfile.swift in Sources */,
+				914E8A4C2455DF8C0001145A /* Emitter.swift in Sources */,
 				914241FF244395C10045FCE4 /* ConversationFirebaseRequester.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
