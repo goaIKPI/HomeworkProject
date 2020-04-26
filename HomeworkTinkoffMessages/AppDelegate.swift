@@ -17,6 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        self.window = EmitterWindow(frame: UIScreen.main.bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if #available(iOS 13.0, *) {
+            let conversationListVC = storyboard.instantiateViewController(identifier: "navConversationList")
+            window?.rootViewController = conversationListVC
+            window?.makeKeyAndVisible()
+        } else {
+            // Fallback on earlier versions
+        }
         StorageManager(coreDataStack: NestedWorkersCoreDataStack.shared).getProfile(completion: { (profile) in
             print("Initial user from CoreDataStack: \(profile)")
         })

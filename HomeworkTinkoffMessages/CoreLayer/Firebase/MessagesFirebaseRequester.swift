@@ -19,13 +19,13 @@ class MessagesFirebaseRequester: IMessagesFirebaseRequester {
      private lazy var dataBase = Firestore.firestore()
      var channel: Conversation?
 
-     private lazy var referenceMessages: CollectionReference = {
-         guard let channelIdentifier = channel?.conversationId else { fatalError() }
+     private lazy var referenceMessages: CollectionReference? = {
+        guard let channelIdentifier = channel?.conversationId else { print("error channel identifier"); return nil }
          return dataBase.collection("channels").document(channelIdentifier).collection("messages")
      }()
 
      func getMessages(completion: @escaping CompletionGetMessages) {
-         referenceMessages.addSnapshotListener { [weak self] snapshot, _ in
+         referenceMessages?.addSnapshotListener { [weak self] snapshot, _ in
              guard let snapshot = snapshot else { return }
              var messages: [MessageCellModel] = []
              for snapshotItem in snapshot.documents {
@@ -50,7 +50,7 @@ class MessagesFirebaseRequester: IMessagesFirebaseRequester {
      }
 
      func sendMessage(message: MessageCellModel, completion: @escaping CompletionErrorSendMessage) {
-         referenceMessages.addDocument(data: message.toDict, completion: { error in
+         referenceMessages?.addDocument(data: message.toDict, completion: { error in
              completion(error)
          })
      }
